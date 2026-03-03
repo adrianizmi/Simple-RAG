@@ -15,22 +15,23 @@ def extract_text_pdf(path):
     return complete_text
 
 def load_and_vectorize(directory="data"):
-    texts = []
+    all_chunks = []
     for file in os.listdir(directory):
         path = os.path.join(directory, file)
-        
+        file_text = ""
         if file.endswith(".txt"):
             with open(path, "r", encoding="utf-8") as f:
-                texts.append(f.read())
-        
+                file_text = f.read()        
         elif file.endswith(".pdf"):
-            print(f"Leyendo PDF: {file}...")
-            texts.append(extract_text_pdf(path))
+            file_text = extract_text_pdf(path)
+        
+        file_chunks = create_chunks(file_text)
+        all_chunks.extend(file_chunks)
     
-    print(f"Generando embeddings para {len(texts)} documentos...")
-    embeddings = embed_model.encode(texts)
+    print(f"Generando embeddings para {len(all_chunks)} documentos...")
+    embeddings = embed_model.encode(all_chunks)
     
-    return texts, embeddings
+    return all_chunks, embeddings
 
 def search_best_context(question, texts, embeddings):
 
