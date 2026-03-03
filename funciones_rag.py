@@ -47,3 +47,13 @@ def search_best_context(question, texts, embeddings):
     
     # 4. We return the original text that corresponds to that index
     return texts[winner_index]
+
+def create_chunks(text, chunk_size=1000,  overlap=200):
+    """
+    Divide a large tetx in small pieces
+    """
+    chunks =[]
+    for i in range (0, len(text), chunk_size - overlap):
+        chunk = text[i : i + chunk_size]
+        chunks.append(chunk)
+    return chunks
