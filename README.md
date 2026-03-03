@@ -33,3 +33,14 @@ A minimalist, high-performance **Retrieval-Augmented Generation (RAG)** engine b
    git clone [https://github.com/adrianizmi/Simple-RAG.git](https://github.com/adrianizmi/Simple-RAG.git)
    cd Simple-RAG
    mkdir data
+   python -m venv venv
+# Windows:
+   .\venv\Scripts\activate
+# Mac/Linux:
+   source venv/bin/activate
+
+   pip install -r requirements.txt
+
+> [!IMPORTANT]
+> **API Key Required:** To run this project, you need a Groq API Key. 
+> You can get one for free at [console.groq.com](https://console.groq.com/).
